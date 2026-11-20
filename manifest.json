@@ -1,0 +1,29 @@
+
+{
+  "manifest_version": 3,
+  "name": "Replay Lab — The Study Time Machine",
+  "version": "1.0.0",
+  "description": "Save confusing YouTube lecture moments, take timestamped notes, replay sections, and track your understanding.",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "action": {
+    "default_title": "Open Replay Lab",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/watch*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
