@@ -1,77 +1,81 @@
 
-/* ---------------------------------
-   REPLAY LAB — POPUP JAVASCRIPT
-   Detect supported YouTube pages
---------------------------------- */
+/*
+ * REPLAY LAB — POPUP
+ * Supported-page status and saved counts
+ */
 
-const siteStatus = document.querySelector("#site-status");
+const statusElement = document.querySelector("#site-status");
+const statusCard = document.querySelector("#status-card");
 
+async function showCurrentPage() {
+  try {
+    const tabs = await chrome.tabs.query({
+      active: true,
+      currentWindow: true
+    });
 
-/* CHECK WHETHER THE TAB IS A YOUTUBE VIDEO */
+    const tab = tabs[0];
 
-function isYouTubeVideo(url) {
-    if (!url) {
-        return false;
+    if (!tab || !tab.url) {
+      throw new Error("Cannot read active tab URL");
     }
 
-    try {
-        const page = new URL(url);
+    const url = new URL(tab.url);
 
-        return (
-            page.hostname === "www.youtube.com" &&
-            page.pathname === "/watch" &&
-            page.searchParams.has("v")
-        );
+    const supported =
+      url.hostname === "www.youtube.com" &&
+      url.pathname === "/watch" &&
+      Boolean(url.searchParams.get("v"));
 
-    } catch (error) {
-        return false;
+    if (!supported) {
+      statusElement.textContent =
+        "Open an individual YouTube video to use Replay Lab.";
+      return;
     }
+
+    statusCard.classList.add("supported");
+
+    statusElement.textContent =
+      "You're on a YouTube video! Your study panel is beside the player.";
+
+    const videoId = url.searchParams.get("v");
+    const key = `replayLab-${videoId}`;
+
+    const result = await chrome.storage.local.get(key);
+    const stored = result[key];
+
+    // Support data from an earlier version.
+    const data = Array.isArray(stored)
+      ? { moments: stored, notes: [] }
+      : stored || {};
+
+    const moments = Array.isArray(data.moments)
+      ? data.moments
+      : [];
+
+    const notes = Array.isArray(data.notes)
+      ? data.notes
+      : [];
+
+    const remaining = moments.filter(
+      item => !item.understood
+    ).length;
+
+    document.querySelector("#moment-count").textContent =
+      moments.length;
+
+    document.querySelector("#note-count").textContent =
+      notes.length;
+
+    document.querySelector("#review-count").textContent =
+      remaining;
+
+  } catch (error) {
+    console.error("Replay Lab popup:", error);
+
+    statusElement.textContent =
+      "Couldn't check this page or your saved data. Try reopening the popup.";
+  }
 }
 
-
-/* DISPLAY THE CURRENT PAGE STATUS */
-
-async function checkCurrentPage() {
-    siteStatus.textContent = "Checking your current tab...";
-
-    try {
-        const tabs = await chrome.tabs.query({
-            active: true,
-            currentWindow: true
-        });
-
-        const activeTab = tabs[0];
-
-        if (!activeTab || !activeTab.url) {
-            siteStatus.textContent =
-                "Could not read this tab. Try opening a YouTube video.";
-            return;
-        }
-
-        if (isYouTubeVideo(activeTab.url)) {
-            siteStatus.textContent =
-                "You're on a YouTube video! Replay Lab supports this page.";
-
-            siteStatus.parentElement.style.background =
-                "#c3fa8c";
-
-        } else {
-            siteStatus.textContent =
-                "Open a YouTube video to save moments, take notes, and replay explanations.";
-
-            siteStatus.parentElement.style.background =
-                "#f8b4c4";
-        }
-
-    } catch (error) {
-        console.error("Replay Lab:", error);
-
-        siteStatus.textContent =
-            "Unable to check the current page. Please try again.";
-    }
-}
-
-
-/* RUN WHEN THE POPUP OPENS */
-
-checkCurrentPage();
+showCurrentPage();
