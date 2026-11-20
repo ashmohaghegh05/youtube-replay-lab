@@ -3,255 +3,220 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Replay Lab</title>
+  <title>Replay Lab</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        body {
-            width: 340px;
-            margin: 0;
-            padding: 18px;
+    body {
+      width: 342px;
+      margin: 0;
+      padding: 18px;
+      background: #292546;
+      color: #faf4e8;
+      font-family: Arial, sans-serif;
+    }
 
-            background: #292546;
-            color: #faf4e8;
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
 
-            font-family: Arial, Helvetica, sans-serif;
-        }
+    h1 {
+      margin: 0;
+      font-size: 25px;
+      letter-spacing: -1px;
+    }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
+    .tag {
+      background: #c3fa8c;
+      color: #292546;
+      font-size: 10px;
+      font-weight: 900;
+      padding: 6px 10px;
+      border-radius: 99px;
+    }
 
-        .brand {
-            margin: 0;
-            font-size: 25px;
-            font-weight: 900;
-            letter-spacing: -1px;
-        }
+    .intro {
+      padding: 16px;
+      border-radius: 16px;
+      background: #383456;
+    }
 
-        .tag {
-            padding: 7px 10px;
-            border-radius: 100px;
+    .intro small {
+      color: #dcc9ff;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+    }
 
-            background: #c3fa8c;
-            color: #292546;
+    h2 {
+      font-size: 21px;
+      margin: 8px 0;
+      line-height: 1.2;
+    }
 
-            font-size: 10px;
-            font-weight: 800;
-        }
+    .intro p,
+    .status p {
+      margin: 5px 0 0;
+      line-height: 1.5;
+      font-size: 13px;
+    }
 
-        .intro {
-            padding: 18px;
-            border-radius: 18px;
+    .status {
+      background: #f8b4c4;
+      color: #292546;
+      padding: 15px;
+      margin-top: 13px;
+      border-radius: 15px;
+      border: 2px solid #19152f;
+    }
 
-            background: #383456;
-        }
+    .status.supported {
+      background: #c3fa8c;
+    }
 
-        .eyebrow {
-            margin: 0 0 10px;
+    .status strong {
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
 
-            color: #dcc9ff;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-        }
+    .stats {
+      display: flex;
+      gap: 8px;
+      margin-top: 13px;
+    }
 
-        .intro h2 {
-            margin: 0 0 10px;
+    .stat {
+      flex: 1;
+      min-width: 0;
+      border-radius: 14px;
+      padding: 12px;
+      text-align: center;
+      background: #403a64;
+    }
 
-            color: #ffffff;
-            font-size: 22px;
-            line-height: 1.2;
-        }
+    .stat b {
+      color: #c3fa8c;
+      font-size: 24px;
+      display: block;
+    }
 
-        .intro p:last-child {
-            margin: 0;
-            color: #e4daf7;
-            font-size: 13px;
-            line-height: 1.6;
-        }
+    .stat span {
+      font-size: 11px;
+      color: #e9ddff;
+    }
 
-        .status-card {
-            margin-top: 15px;
-            padding: 16px;
+    .tips {
+      color: #ded1f3;
+      line-height: 1.5;
+      font-size: 12px;
+      margin: 14px 2px;
+    }
 
-            border: 2px solid #19152f;
-            border-radius: 16px;
+    a {
+      display: block;
+      padding: 12px;
+      border-radius: 13px;
+      background: #dcc9ff;
+      color: #292546;
+      text-align: center;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 900;
+    }
 
-            background: #f8b4c4;
-            color: #292546;
+    a:focus-visible {
+      outline: 3px solid #c3fa8c;
+    }
 
-            box-shadow: 3px 4px 0 #19152f;
-        }
-
-        .status-label {
-            margin: 0 0 7px;
-            font-size: 11px;
-            font-weight: 900;
-            letter-spacing: 1px;
-        }
-
-        #site-status {
-            margin: 0;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        .instructions {
-            margin-top: 22px;
-        }
-
-        .instructions h3 {
-            margin: 0 0 12px;
-
-            color: #c3fa8c;
-            font-size: 12px;
-            letter-spacing: 1px;
-        }
-
-        .step {
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
-
-            padding: 11px 0;
-            border-bottom: 1px solid #514a76;
-        }
-
-        .number {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            min-width: 27px;
-            height: 27px;
-
-            border-radius: 9px;
-            background: #dcc9ff;
-            color: #292546;
-
-            font-size: 12px;
-            font-weight: 900;
-        }
-
-        .step p {
-            margin: 3px 0 0;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        .youtube-link {
-            display: block;
-            margin-top: 23px;
-            padding: 13px;
-
-            border: 2px solid #19152f;
-            border-radius: 15px;
-
-            background: #c3fa8c;
-            color: #292546;
-
-            font-size: 13px;
-            font-weight: 900;
-            text-align: center;
-            text-decoration: none;
-
-            box-shadow: 3px 4px 0 #19152f;
-        }
-
-        .youtube-link:hover {
-            background: #d7ffaf;
-        }
-
-        .youtube-link:focus-visible {
-            outline: 3px solid #ffffff;
-            outline-offset: 3px;
-        }
-
-        .footer {
-            margin: 21px 0 0;
-            color: #c7badf;
-
-            font-size: 11px;
-            text-align: center;
-        }
-    </style>
+    footer {
+      font-size: 10px;
+      color: #c8bce1;
+      text-align: center;
+      margin-top: 14px;
+    }
+  </style>
 </head>
 
 <body>
 
-    <header class="header">
-        <h1 class="brand">replay lab ✦</h1>
-        <span class="tag">STUDY MODE</span>
-    </header>
+  <header>
+    <h1>replay lab ✦</h1>
+    <span class="tag">STUDY MODE</span>
+  </header>
 
-    <section class="intro">
-        <p class="eyebrow">YOUR STUDY TIME MACHINE</p>
+  <div class="intro">
+    <small>YOUR STUDY TIME MACHINE</small>
 
-        <h2>Didn't get it? Replay it!</h2>
+    <h2>Didn't get it? Replay it!</h2>
 
-        <p>
-            Save confusing moments, add study notes,
-            and revisit them until they finally click.
-        </p>
-    </section>
-
-    <section class="status-card" aria-live="polite">
-        <p class="status-label">CURRENT PAGE</p>
-
-        <p id="site-status">
-            Open a YouTube video to use Replay Lab.
-        </p>
-    </section>
-
-    <section class="instructions">
-        <h3>HOW IT WORKS</h3>
-
-        <div class="step">
-            <span class="number">01</span>
-            <p>Watch an educational video on YouTube.</p>
-        </div>
-
-        <div class="step">
-            <span class="number">02</span>
-            <p>Save the last 30 seconds when something gets confusing.</p>
-        </div>
-
-        <div class="step">
-            <span class="number">03</span>
-            <p>Add notes and replay your saved moments.</p>
-        </div>
-
-        <div class="step">
-            <span class="number">04</span>
-            <p>Mark moments understood and track your progress!</p>
-        </div>
-    </section>
-
-    <a
-        class="youtube-link"
-        href="https://www.youtube.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        OPEN YOUTUBE ↗
-    </a>
-
-    <p class="footer">
-        little moments. big brain energy.
+    <p>
+      Save tricky explanations, write notes,
+      and make that concept click.
     </p>
+  </div>
 
-    <script src="popup.js"></script>
+  <div
+    id="status-card"
+    class="status"
+    role="status"
+    aria-live="polite"
+  >
+    <strong>CURRENT PAGE</strong>
+
+    <p id="site-status">
+      Checking the current page…
+    </p>
+  </div>
+
+  <div
+    class="stats"
+    aria-label="Saved study progress for this video"
+  >
+    <div class="stat">
+      <b id="moment-count">—</b>
+      <span>bookmarks</span>
+    </div>
+
+    <div class="stat">
+      <b id="note-count">—</b>
+      <span>notes</span>
+    </div>
+
+    <div class="stat">
+      <b id="review-count">—</b>
+      <span>to review</span>
+    </div>
+  </div>
+
+  <p class="tips">
+    On a YouTube video, look beside the player
+    for your Replay Lab panel. Save the last
+    30 seconds, take notes, and mark moments understood.
+  </p>
+
+  <a
+    href="https://www.youtube.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    OPEN YOUTUBE ↗
+  </a>
+
+  <footer>
+    little moments. big brain energy. ♡
+  </footer>
+
+  <script src="popup.js"></script>
 
 </body>
 </html>
