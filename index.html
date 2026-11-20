@@ -1,0 +1,443 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Replay Lab ✦ The Study Time Machine</title>
+
+  <style>
+    :root {
+      --ink: #292546;
+      --lavender: #dcc9ff;
+      --pink: #f8b4c4;
+      --lime: #c3fa8c;
+      --cream: #faf4e8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font: 16px/1.6 Arial, Helvetica, sans-serif;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .wrap {
+      width: min(1080px, calc(100% - 36px));
+      margin: auto;
+    }
+
+    .top {
+      background: var(--ink);
+      color: white;
+      padding: 16px 0;
+      border-bottom: 5px solid var(--lime);
+    }
+
+    .top .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      font-weight: 900;
+      font-size: 23px;
+      letter-spacing: -0.7px;
+    }
+
+    .top a {
+      color: var(--lime);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .hero {
+      padding: 85px 0 72px;
+      background: var(--ink);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "✦";
+      position: absolute;
+      right: -40px;
+      top: -180px;
+      color: var(--lavender);
+      opacity: 0.1;
+      font-size: 630px;
+      pointer-events: none;
+    }
+
+    .hero .wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 900;
+      color: var(--lime);
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 80px);
+      line-height: 1.08;
+      letter-spacing: -3px;
+      margin: 15px 0 24px;
+      max-width: 880px;
+    }
+
+    h1 span {
+      color: var(--pink);
+    }
+
+    .hero p {
+      max-width: 580px;
+      color: #e1d9ee;
+      font-size: 19px;
+      margin: 0 0 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border: 2px solid var(--ink);
+      border-radius: 15px;
+      background: var(--lime);
+      color: var(--ink);
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 4px 5px 0 #a295bf;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    main section {
+      padding: 55px 0;
+    }
+
+    h2 {
+      font-size: clamp(27px, 4vw, 40px);
+      letter-spacing: -1.3px;
+      margin: 0 0 18px;
+    }
+
+    .section-lead {
+      max-width: 700px;
+      margin: 0 0 24px;
+      color: #534b6b;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .feature {
+      background: white;
+      border: 2px solid var(--ink);
+      padding: 24px;
+      border-radius: 19px;
+      box-shadow: 4px 5px 0 var(--lavender);
+    }
+
+    .feature:nth-child(2) {
+      box-shadow: 4px 5px 0 var(--pink);
+    }
+
+    .feature:nth-child(3) {
+      box-shadow: 4px 5px 0 var(--lime);
+    }
+
+    .emoji {
+      font-size: 27px;
+    }
+
+    .feature h3 {
+      font-size: 19px;
+      margin: 13px 0 6px;
+    }
+
+    .feature p {
+      margin: 0;
+      font-size: 14px;
+      color: #50485f;
+    }
+
+    .install {
+      background: #ece1ff;
+      border-top: 3px solid var(--ink);
+      border-bottom: 3px solid var(--ink);
+    }
+
+    ol {
+      list-style: none;
+      padding: 0;
+      margin: 25px 0;
+      display: grid;
+      gap: 13px;
+      counter-reset: item;
+    }
+
+    li {
+      counter-increment: item;
+      background: white;
+      border-radius: 15px;
+      border: 2px solid var(--ink);
+      padding: 17px 20px 17px 68px;
+      position: relative;
+    }
+
+    li::before {
+      content: counter(item, decimal-leading-zero);
+      position: absolute;
+      left: 16px;
+      top: 17px;
+      display: grid;
+      place-items: center;
+      width: 37px;
+      height: 37px;
+      border-radius: 11px;
+      background: var(--pink);
+      font-weight: 900;
+    }
+
+    code {
+      background: #e5d7fb;
+      border-radius: 4px;
+      padding: 2px 5px;
+      overflow-wrap: anywhere;
+    }
+
+    .note {
+      padding: 17px;
+      border-radius: 13px;
+      background: var(--lime);
+      font-weight: 700;
+      margin-top: 19px;
+    }
+
+    .bottom {
+      background: var(--ink);
+      color: var(--cream);
+      text-align: center;
+      padding: 35px 15px;
+    }
+
+    .bottom small {
+      color: var(--lavender);
+    }
+
+    @media (max-width: 700px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 65px 0;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      h1 {
+        letter-spacing: -1.8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="top">
+    <div class="wrap">
+      <strong class="logo">replay lab ✦</strong>
+      <a href="#install">How to install ↘</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">
+        YOUR STUDY TIME MACHINE · CHROME EXTENSION
+      </div>
+
+      <h1>
+        Wait… <span>replay that part!</span>
+      </h1>
+
+      <p>
+        Don't lose the explanation that almost made sense.
+        Save the last 30 seconds of a YouTube lecture,
+        add a note, and replay it until it clicks.
+      </p>
+
+      <a class="btn" href="#install">
+        GET REPLAY LAB ↘
+      </a>
+    </div>
+  </section>
+
+  <main>
+
+    <section>
+      <div class="wrap">
+        <h2>
+          Less scrubbing. More understanding.
+        </h2>
+
+        <p class="section-lead">
+          Replay Lab sits beside a YouTube video,
+          so your study bookmarks and notes stay
+          right where you need them.
+        </p>
+
+        <div class="grid">
+
+          <article class="feature">
+            <div class="emoji">⏪</div>
+
+            <h3>Catch the moment</h3>
+
+            <p>
+              Save the previous 30 seconds and replay
+              just that section instead of searching
+              through a whole lecture.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="emoji">📝</div>
+
+            <h3>Write it down</h3>
+
+            <p>
+              Add a question to a replay bookmark or
+              create standalone notes linked to a
+              video timestamp.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="emoji">✨</div>
+
+            <h3>Make it click</h3>
+
+            <p>
+              Mark difficult moments understood,
+              see what remains, and return
+              to your notes another day.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="install" class="install">
+      <div class="wrap">
+
+        <h2>
+          Install in Chrome, no Web Store needed.
+        </h2>
+
+        <p class="section-lead">
+          Replay Lab is a student project.
+          Follow these steps to install it from GitHub.
+        </p>
+
+        <ol>
+          <li>
+            Open the
+            <a
+              href="https://github.com/ashmohaghegh05/youtube-replay-lab"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Replay Lab GitHub repository
+            </a>.
+          </li>
+
+          <li>
+            Click the green <strong>Code</strong>
+            button and select
+            <strong>Download ZIP</strong>.
+          </li>
+
+          <li>
+            Extract the ZIP on your computer.
+          </li>
+
+          <li>
+            In Chrome, open
+            <code>chrome://extensions</code>
+            and switch on
+            <strong>Developer mode</strong>.
+          </li>
+
+          <li>
+            Click <strong>Load unpacked</strong>
+            and select the extracted folder
+            containing <code>manifest.json</code>.
+          </li>
+
+          <li>
+            Open a standard
+            <a
+              href="https://www.youtube.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              YouTube video
+            </a>.
+            Replay Lab appears beside the player!
+          </li>
+        </ol>
+
+        <p class="note">
+          Your bookmarks and notes are saved locally
+          in Chrome. No account, API key, or AI model needed.
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bottom">
+    <strong>replay lab ✦</strong>
+
+    <p>little moments. big brain energy. ♡</p>
+
+    <small>
+      Built for OIM3690 · Web Development with AI
+    </small>
+  </footer>
+
+</body>
+</html>
