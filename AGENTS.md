@@ -187,3 +187,188 @@ Refreshing YouTube should not erase the saved information.
 Opening another video should load that video's information rather than mixing notes from different videos.
 
 ## YouTube Page Behavior
+
+The extension should work on standard recorded YouTube watch pages.
+
+YouTube can navigate between videos without fully reloading the page.
+
+Handle video changes carefully.
+
+Do not:
+
+- Cover the main video controls
+- Change playback speed automatically
+- Mute the video
+- Download the video
+- Modify unrelated YouTube content
+
+If the video element is unavailable, show a helpful message rather than causing an error.
+
+## Design Direction
+
+The theme is **The Study Time Machine**.
+
+Make the interface playful, colorful, slightly retro, and memorable.
+
+Use this palette:
+
+| Color | Hex |
+|---|---|
+| Midnight Purple | `#292546` |
+| Lavender | `#DCC9FF` |
+| Bubblegum Pink | `#F8B4C4` |
+| Lime Green | `#C3FA8C` |
+| Warm Cream | `#FAF4E8` |
+
+### Design Elements
+
+Use:
+
+- Rounded study cards
+- Playful buttons
+- Clear timestamps
+- Friendly empty-state messages
+- Small progress indicators
+- Compact, easy-to-read typography
+- Accessible contrast
+- Responsive layouts
+
+Possible interface text includes:
+
+- "Save the last 30 seconds"
+- "My Brain Bookmarks"
+- "Still figuring this out"
+- "I got it!"
+- "Ready for a replay?"
+- "One less mystery!"
+
+Keep the design fun without making it childish or distracting.
+
+## Required Application States
+
+Follow the states and tests in `PROPOSAL.md`.
+
+### Empty
+
+No moments or notes are saved for the video.
+
+Show an inviting message and an obvious first action.
+
+### In Use
+
+Saved moments, notes, replay buttons, and progress appear.
+
+### Unsupported Page
+
+When the user opens the popup outside a supported YouTube watch page, explain where Replay Lab works.
+
+### Invalid Input
+
+Do not save blank notes. Show a helpful validation message.
+
+### Saved Data
+
+Restore the correct notes and bookmarks after refreshing or revisiting a video.
+
+### Early Video
+
+Never generate a negative timestamp when saving a moment near the beginning of a video.
+
+### Unavailable Video
+
+If YouTube has not loaded its player, explain the problem and allow the user to try again.
+
+## JavaScript Coding Rules
+
+Use descriptive function and variable names.
+
+Prefer:
+
+- `const` and `let`
+- Arrays and objects
+- Small functions
+- `if` statements
+- Event listeners
+- `querySelector()`
+- `createElement()`
+- `textContent`
+- `appendChild()`
+- `chrome.storage.local`
+
+Avoid unnecessary complexity.
+
+Use comments to explain important functions, especially the replay and storage logic.
+
+Never use unsanitized user notes as HTML.
+
+## Testing Rules
+
+Build one feature at a time.
+
+After implementing a feature, test it before proceeding.
+
+Required tests include:
+
+1. Save a replay section after 45 seconds.
+2. Save a replay section before 30 seconds.
+3. Add, edit, and delete a replay note.
+4. Add, edit, and delete a standalone timestamped note.
+5. Replay a saved section and verify that it pauses at the ending time.
+6. Mark a section understood and verify the progress count.
+7. Refresh the page and verify that data remains.
+8. Open a different YouTube video and verify that its data is separate.
+9. Open the extension popup on an unsupported page.
+10. Try to save a blank note.
+11. Check that the study panel does not cover YouTube controls.
+
+Do not describe a feature as tested unless it has actually been tested.
+
+## Installation Rules
+
+The extension must be installable from the GitHub repository.
+
+Provide instructions for:
+
+1. Downloading the repository ZIP.
+2. Extracting the ZIP.
+3. Opening `chrome://extensions`.
+4. Enabling Developer mode.
+5. Selecting **Load unpacked**.
+6. Choosing the folder containing `manifest.json`.
+7. Opening a supported YouTube video.
+
+After changes, reload the extension and refresh YouTube before testing.
+
+## Working With AI-Generated Code
+
+Do not rewrite working code unnecessarily.
+
+Before making a change:
+
+1. Explain which feature the change supports.
+2. Change only the relevant files.
+3. Keep the code understandable.
+4. Check that existing features still work.
+
+If the same kind of AI-generated mistake happens twice, update this file with a rule that prevents it.
+
+Keep meaningful GitHub commits throughout development.
+
+## Scope Control
+
+Do not add:
+
+- AI video summarization
+- Automatic transcription
+- Voice notes
+- Account login
+- Cloud synchronization
+- Sharing between students
+- Browser-wide activity tracking
+- Gamification unrelated to review progress
+
+These may be considered later, but they are not part of the approved first version.
+
+## Final Goal
+
+Another student should be able to install Replay Lab, open a YouTube lecture, save a confusing section, add a note, replay it, mark it understood, and return later to find their study information still
