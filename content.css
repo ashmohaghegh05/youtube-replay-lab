@@ -1,0 +1,287 @@
+
+/* =========================================
+   REPLAY LAB — THE STUDY TIME MACHINE
+   YouTube Study Panel
+========================================= */
+
+/* MAIN PANEL */
+
+#replay-lab-panel {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 400px;
+    margin: 18px 0;
+    padding: 20px;
+
+    background: #292546;
+    color: #faf4e8;
+
+    border: 2px solid #19152f;
+    border-radius: 22px;
+
+    box-shadow: 5px 6px 0 #d9c4f5;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#replay-lab-panel * {
+    box-sizing: border-box;
+}
+
+/* HEADER */
+
+#replay-lab-panel .replay-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#replay-lab-panel .replay-brand {
+    margin: 0;
+    color: #ffffff;
+    font-size: 23px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+#replay-lab-panel .replay-tag {
+    background: #c3fa8c;
+    color: #292546;
+
+    padding: 6px 10px;
+    border-radius: 999px;
+
+    font-size: 10px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+/* VIDEO INFORMATION */
+
+#replay-lab-panel .replay-video-info {
+    background: #383456;
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+}
+
+#replay-lab-panel .replay-label {
+    margin: 0 0 8px;
+    color: #dcc9ff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+#replay-lab-panel .replay-time {
+    color: #c3fa8c;
+    font-size: 22px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+/* BUTTONS */
+
+#replay-lab-panel button {
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+#replay-lab-panel .replay-save-button {
+    width: 100%;
+    padding: 15px;
+
+    border: 2px solid #19152f;
+    border-radius: 16px;
+
+    background: #f8b4c4;
+    color: #292546;
+
+    font-size: 13px;
+    font-weight: 900;
+
+    box-shadow: 3px 4px 0 #19152f;
+}
+
+#replay-lab-panel .replay-save-button:hover {
+    transform: translateY(-2px);
+}
+
+#replay-lab-panel button:focus-visible,
+#replay-lab-panel textarea:focus-visible {
+    outline: 3px solid #c3fa8c;
+    outline-offset: 3px;
+}
+
+#replay-lab-panel button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* NOTES */
+
+#replay-lab-panel .replay-notes {
+    margin-top: 20px;
+}
+
+#replay-lab-panel .replay-notes-title {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 800;
+    margin: 0 0 12px;
+}
+
+#replay-lab-panel .replay-note-input {
+    width: 100%;
+    min-height: 80px;
+    padding: 12px;
+
+    border: 2px solid #b9a8dc;
+    border-radius: 12px;
+
+    background: #faf4e8;
+    color: #292546;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+
+    resize: vertical;
+}
+
+#replay-lab-panel .replay-note-button {
+    margin-top: 10px;
+    padding: 10px 16px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #c3fa8c;
+    color: #292546;
+
+    font-weight: 800;
+}
+
+/* SAVED MOMENTS */
+
+#replay-lab-panel .replay-moments {
+    margin-top: 24px;
+}
+
+#replay-lab-panel .replay-moment-card {
+    background: #faf4e8;
+    color: #292546;
+
+    padding: 15px;
+    margin-bottom: 12px;
+
+    border-radius: 15px;
+}
+
+#replay-lab-panel .replay-moment-time {
+    font-size: 12px;
+    color: #68588c;
+    font-weight: 800;
+}
+
+#replay-lab-panel .replay-moment-note {
+    margin: 8px 0 12px;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+#replay-lab-panel .replay-moment-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+#replay-lab-panel .replay-small-button {
+    padding: 8px 11px;
+
+    border: 1px solid #292546;
+    border-radius: 10px;
+
+    background: #dcc9ff;
+    color: #292546;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+#replay-lab-panel .replay-understood {
+    background: #c3fa8c;
+}
+
+/* PROGRESS */
+
+#replay-lab-panel .replay-progress {
+    margin-top: 20px;
+    padding: 14px;
+
+    border-radius: 14px;
+    background: #403b65;
+}
+
+#replay-lab-panel .replay-progress-text {
+    margin: 0 0 10px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#replay-lab-panel .replay-progress-track {
+    height: 9px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: #625b81;
+}
+
+#replay-lab-panel .replay-progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #c3fa8c;
+    border-radius: 999px;
+}
+
+/* EMPTY AND ERROR STATES */
+
+#replay-lab-panel .replay-empty {
+    padding: 22px 12px;
+    text-align: center;
+
+    color: #e7dbff;
+    font-size: 13px;
+}
+
+#replay-lab-panel .replay-error {
+    padding: 12px;
+    margin-top: 12px;
+
+    background: #f8b4c4;
+    color: #292546;
+    border-radius: 12px;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* SMALL SCREENS */
+
+@media (max-width: 600px) {
+    #replay-lab-panel {
+        max-width: 100%;
+        margin: 12px 0;
+        padding: 15px;
+        border-radius: 16px;
+    }
+
+    #replay-lab-panel .replay-brand {
+        font-size: 20px;
+    }
+}
