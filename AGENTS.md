@@ -371,4 +371,4 @@ These may be considered later, but they are not part of the approved first versi
 
 ## Final Goal
 
-Another student should be able to install Replay Lab, open a YouTube lecture, save a confusing section, add a note, replay it, mark it understood, and return later to find their study information still
+Another student should be able to install Replay Lab, open a YouTube lecture, save a confusing section, add a note, replay it, mark it understood, and return later to find their study information still saved
