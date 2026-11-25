@@ -1,6 +1,4 @@
-
-/* REPLAY LAB — THE STUDY TIME MACHINE */
-
+/* All extension styles are scoped to our own panel. */
 #replay-lab-panel {
   box-sizing: border-box;
   width: 100%;
@@ -147,6 +145,13 @@
   font-size: 10px;
   color: #e9deff;
   white-space: nowrap;
+}
+
+#replay-lab-panel .rl-video-hint {
+  margin: -4px 0 10px;
+  color: #dcc9ff;
+  font-size: 11px;
+  line-height: 1.4;
 }
 
 #replay-lab-panel .rl-list {
