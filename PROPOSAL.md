@@ -222,6 +222,14 @@ I will keep the study panel compact and readable.
 
 **Test:** Play a video to 10 seconds, save the previous 30 seconds, and confirm that the saved section begins at 0:00.
 
+### 7. Unavailable Player State
+
+**When:** I open a supported YouTube watch page before its video player has loaded.
+
+**Expected display:** Replay Lab says that it is waiting for the YouTube player. The save and note controls stay disabled until the player is available. My saved study data is preserved.
+
+**Test:** Open a YouTube watch page while the player is still loading. Confirm that the waiting message appears and the save and note controls are disabled. After the player loads, confirm that the controls become available.
+
 ## What I Do Not Know Yet
 
 I understand HTML, CSS, JavaScript, DOM manipulation, arrays, event listeners, and local storage from earlier coursework, but there are some things I still need to investigate.
