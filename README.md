@@ -1,35 +1,30 @@
-
 # Replay Lab ✦ — The Study Time Machine
 
-**I wish my browser would let me save, take notes on, and replay confusing moments when I am watching educational videos on YouTube.**
+**I wish my browser would let me save, take notes on, and replay confusing moments while I watch educational videos on YouTube.**
 
-Replay Lab is a Chrome extension that makes studying from YouTube lectures more interactive.
+Replay Lab turns a YouTube video into a small study space. Learners can save a tricky moment, write a note, replay the section, and mark it understood.
 
-Instead of searching through a long lecture to find one confusing explanation, students can save the previous 30 seconds, write notes, replay that section, and mark it understood.
+The goal is to make it easier to return to a specific explanation without searching through the whole video again.
 
-## Who I Built It For
+## Who It Is For
 
-I built Replay Lab for myself, a student who uses YouTube tutorials and lectures to understand difficult concepts.
+Replay Lab is for students and other people who use educational videos to learn. It is especially useful when a learner understands most of a video but wants to return to a particular explanation later.
 
-I sometimes need to replay specific explanations or write questions while watching.
+**Created by:** Ash Mohaghegh
 
-Replay Lab keeps those moments and notes connected to the original video.
+**Repository:** [youtube-replay-lab](https://github.com/ashmohaghegh05/youtube-replay-lab)
 
-**Student's name:** [YOUR REAL NAME]
-
-**Repository:** https://github.com/ashmohaghegh05/youtube-replay-lab
-
-**Live website:** [ADD LINK AFTER GITHUB PAGES DEPLOYMENT]
+**Live website:** [Replay Lab on GitHub Pages](https://ashmohaghegh05.github.io/youtube-replay-lab/)
 
 ## Features
 
-1. Save the last 30 seconds of a YouTube video.
-2. Replay saved sections and pause at the ending timestamp.
+1. Save the previous 30 seconds of a YouTube video as a replay bookmark.
+2. Replay a saved section and pause at its ending timestamp.
 3. Add, edit, and delete notes on replay bookmarks.
 4. Create standalone timestamped notes and jump back to them.
-5. Mark moments understood and track progress.
+5. Mark replay bookmarks as understood and track review progress.
 
-Data is saved separately for each YouTube video using Chrome extension storage.
+Bookmarks and notes are saved separately for each video in Chrome extension storage. When you open another video, its own study list appears. Return to the original video to see its saved bookmarks and notes again.
 
 ## Where It Runs
 
@@ -37,149 +32,130 @@ Replay Lab runs on standard YouTube watch pages:
 
 `https://www.youtube.com/watch*`
 
-It needs access to these pages to read playback time, seek to timestamps, and display the study panel.
-
-It does not need access to every website.
+It needs access to these pages to read the video’s playback time, jump to timestamps, and show the study panel beside the player. It does not request access to unrelated websites.
 
 ## Permissions
 
-**storage:** Saves replay bookmarks, notes, and understanding status locally.
+- **`storage`** — saves replay bookmarks, notes, and understanding status locally in Chrome.
+- **`activeTab`** — lets the popup check the current tab when you open the extension.
 
-**activeTab:** Lets the popup check the current tab when the user clicks the extension icon.
-
-**host_permissions:** None.
-
-No API keys, model calls, or external libraries are required.
+The extension does not use API keys, model calls, external libraries, or a server.
 
 ## Installation
 
-1. Open this GitHub repository.
-2. Click **Code → Download ZIP**.
-3. Extract the ZIP.
-4. Open `chrome://extensions` in Google Chrome.
-5. Enable **Developer mode**.
+1. Open the [Replay Lab GitHub repository](https://github.com/ashmohaghegh05/youtube-replay-lab).
+2. Click **Code**, then **Download ZIP**.
+3. Extract the ZIP file.
+4. In Google Chrome, open `chrome://extensions`.
+5. Turn on **Developer mode**.
 6. Click **Load unpacked**.
-7. Select the extracted repository folder containing `manifest.json`.
-8. Open a standard YouTube watch page.
+7. Select the extracted project folder that contains `manifest.json`.
+8. Open YouTube and choose a standard video.
 
-Replay Lab should appear beside the YouTube video.
+Replay Lab should appear beside the video. After changing the extension’s files, click **Reload** on the `chrome://extensions` page and refresh YouTube.
 
-To install an updated version, reload the extension in Chrome and refresh YouTube.
+## How to Use Replay Lab
 
-## How to Use
+### Save a replay bookmark
 
-### Save a moment
+While a video is playing, click **Save Last 30 Seconds** when you reach an explanation you want to review. Replay Lab shows the saved start and end timestamps.
 
-Watch a video and click **SAVE LAST 30 SECONDS** when an explanation becomes confusing.
+### Add a note to a bookmark
 
-### Add a replay note
+Click **Note** on a saved bookmark, write what you want to remember, and save it. You can edit or clear the note later.
 
-Click **Note** on a saved bookmark.
+### Replay a saved section
 
-Write what confused you and save the note.
+Click **Replay** on a bookmark. The video jumps to that section and is designed to pause at the saved ending time.
 
-### Replay
+### Add a timestamped note
 
-Click **Replay** to jump to the saved section.
+Write in the **Timestamped Notes** box and click **Save Note at Current Time**. Use **Jump here** on the saved note to return to that timestamp.
 
-The extension is designed to pause when the saved section finishes.
+### Track understanding
 
-### Take a standalone note
-
-Write in the **Timestamped Notes** box and click **SAVE NOTE AT CURRENT TIME**.
-
-Use **Jump here** to return to the timestamp.
-
-### Track progress
-
-Click **I got it!** when you understand a saved explanation.
-
-You can change it back to **Review again** later.
+Click **I got it!** when you understand a saved moment. Click **Review again** if you want to revisit it later. The progress count reflects the statuses you choose.
 
 ## Technology
 
-- Manifest V3
-- HTML
-- CSS
-- JavaScript
+- Chrome Extension Manifest V3
+- HTML and CSS
+- Vanilla JavaScript
 - Chrome Storage API
+- Browser video playback controls
 - DOM manipulation
-- HTML video playback controls
 
-No React, Tailwind, external scripts, or API keys.
+The extension does not use React, Tailwind, external scripts, API keys, or a database.
 
 ## Application States
 
 | State | Expected behavior |
 |---|---|
-| Empty | No saved moments or notes; helpful empty messages |
-| In use | Bookmarks, notes, replay controls, and progress |
-| Unsupported page | Popup explains that Replay Lab works on YouTube watch pages |
-| Invalid input | Blank standalone notes cannot be saved |
-| Saved data | Notes and bookmarks return after refreshing |
-| Early video | Saving before 30 seconds begins at 0:00 |
-| Unavailable player | Waiting message and disabled save controls |
+| Empty | The panel shows helpful empty messages when this video has no saved moments or notes. |
+| In use | Bookmarks, notes, replay controls, and understanding progress appear. |
+| Unsupported page | The popup explains that Replay Lab works on YouTube video pages. |
+| Invalid input | A blank timestamped note is refused and an explanatory message appears. |
+| Saved data | This video’s bookmarks and notes return after refresh or when reopening the video. |
+| Another video | That video’s own study data appears; the original video’s data remains saved separately. |
+| Early video | A bookmark saved before 30 seconds starts at 0:00 rather than a negative time. |
+| Player unavailable | The panel explains that it is waiting for the YouTube player and disables actions that need it. |
+| Loading or storage error | The panel shows a loading or error message instead of silently failing. |
 
 ## Tests
 
-These tests must be performed on a fresh installation downloaded from this GitHub repository.
-
-Do not mark a test as passed until it has actually worked.
-
-| Test | Expected result | Actual result |
+| Test | Expected result | Result |
 |---|---|---|
-| Open a new YouTube video | Empty study panel appears | Not yet run |
-| Save at 0:45 | Saves approximately 0:15–0:45 | Not yet run |
-| Save at 0:10 | Saves 0:00–0:10 | Not yet run |
-| Edit a bookmark note | Changes are saved | Not yet run |
-| Delete a bookmark note | Note is cleared | Not yet run |
-| Add a timestamped note | Note appears with timestamp | Not yet run |
-| Save a blank note | Helpful error appears | Not yet run |
-| Edit or delete a timestamped note | Changes appear correctly | Not yet run |
-| Replay a section | Starts and pauses at saved times | Not yet run |
-| Mark understood | Progress percentage updates | Not yet run |
-| Refresh YouTube | Saved data remains | Not yet run |
-| Open another video | Different saved data appears | Not yet run |
-| Open YouTube homepage | Unsupported-page popup appears | Not yet run |
-| Open YouTube watch page | Supported-page popup appears | Not yet run |
-| Narrow YouTube window | Panel does not cover player controls | Not yet run |
+| Open a YouTube video with no saved data | Empty bookmark and notes messages appear. | Passed |
+| Save a bookmark at about 0:45 | A bookmark appears for about 0:15–0:45. | Passed |
+| Save a bookmark at about 0:10 | The bookmark starts at 0:00 and ends near 0:10. | Passed |
+| Add, edit, and clear a bookmark note | The saved note changes or clears as requested. | Passed |
+| Add a timestamped note | The note appears with the current video timestamp. | Passed |
+| Try to save a blank timestamped note | The note is refused and an error message appears. | Passed |
+| Edit and delete a timestamped note | The note updates or disappears as requested. | Passed |
+| Replay a saved section | Playback starts at the saved start and pauses near the end. | Passed |
+| Mark a bookmark understood | The progress count and percentage update. | Passed |
+| Refresh a YouTube video | Its saved bookmarks and notes remain. | Passed |
+| Open a different video | Its list is separate from the first video’s list. | Passed |
+| Open the YouTube homepage and the extension popup | The popup explains that an individual video page is needed. | Passed |
+| Open a YouTube video and the extension popup | The popup identifies the page as supported. | Passed |
+| Resize the YouTube window | The panel stays beside the video without covering its controls. | Passed |
 
 ## User test
 
-Complete this section after another person installs Replay Lab from the repository and uses it without your help.
+**Person:** Carl Hundertmark
 
-**Person:** [REAL TESTER NAME]
+**Date:** November 25, 2026
 
-**Date:** [DATE]
+**What they tried:** He saved a Replay Lab bookmark on a YouTube video, opened a different video, and checked whether the original bookmark was still saved.
 
-**What they tried:** [DESCRIBE ACTUAL ACTIONS]
+**Where they got stuck:** The bookmark was not visible on the second video, so it seemed to have disappeared.
 
-**Where they got stuck:** [OBSERVED ISSUE]
+**What I changed:** I added a reminder under **My Brain Bookmarks** explaining that bookmarks are saved for the current video and appear again when the learner returns to it.
 
-**What I changed:** [SPECIFIC IMPROVEMENT]
+**Retest result:** After the change, he returned to the original video and confirmed that its bookmark was still available. The reminder clarified why it was not shown on the other video.
 
-**Commit link:** [LINK TO THE COMMIT THAT MADE THE CHANGE]
+**Related commits:**
 
-**Retest result:** [WHAT ACTUALLY HAPPENED]
+- [Replay Lab commit 1](https://github.com/ashmohaghegh05/youtube-replay-lab/commit/1c6509c6369326fb10b08ba6447afc3d390eab78)
+- [Replay Lab commit 2](https://github.com/ashmohaghegh05/youtube-replay-lab/commit/dba691ab2b98f4c51b1b402feb98c39417eb3a76)
 
 ## AI Output I Did Not Accept As-Is
 
-**AI output I reviewed:** [SPECIFIC CODE OR SUGGESTION]
+AI suggested adding a confirmation message after saving a replay bookmark. I checked the existing `saveMoment()` function and saw that it already confirms the save and displays the start and end timestamps. Adding another confirmation would have repeated the same feedback.
 
-**Problem I identified:** [WHAT WAS WRONG OR MISSING]
+The issue I needed to address was different: when I opened another video, its separate bookmark list made the first video’s bookmark look like it had disappeared.
 
-**What I changed:** [SPECIFIC CHANGE]
+**What I changed:** I added a reminder below **My Brain Bookmarks** explaining that bookmarks are saved for the current video and appear again when the learner returns to it.
 
-**How I verified it:** [TEST AND RESULT]
+**How I verified it:** I reloaded the extension, switched between videos, and checked that the reminder appeared and each video showed its own saved bookmarks.
 
-**Commit link:** [LINK TO THE ACTUAL COMMIT]
+**Related commits:**
+
+- [Replay Lab commit 1](https://github.com/ashmohaghegh05/youtube-replay-lab/commit/1c6509c6369326fb10b08ba6447afc3d390eab78)
+- [Replay Lab commit 2](https://github.com/ashmohaghegh05/youtube-replay-lab/commit/dba691ab2b98f4c51b1b402feb98c39417eb3a76)
 
 ## Development
 
-The original plan is in `PROPOSAL.md`.
-
-The coding rules are in `AGENTS.md`.
-
-The project uses small, understandable functions and avoids unnecessary frameworks.
+The project plan is in `PROPOSAL.md`. The project rules are in `AGENTS.md`. Replay Lab uses plain HTML, CSS, and JavaScript so its main features can be explained during a class walkthrough.
 
 **Don't lose the moment. Replay it, understand it, and move on.**
